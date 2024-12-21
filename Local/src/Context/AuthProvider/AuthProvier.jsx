@@ -43,6 +43,7 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
       const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
+          setLoading(false);
         if (currentUser?.email) {
           const user = { email: currentUser?.email };
           axios.post(`http://localhost:5000/jote`, user, { withCredentials: true })
